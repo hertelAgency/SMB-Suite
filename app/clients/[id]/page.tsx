@@ -6,6 +6,7 @@ import {
   useGetClientEmployeesQuery,
 } from "@/store/api/apiSlice";
 import Protected from "@/components/Protected";
+import type { Client } from "@/type/ClientType";
 
 export default function ClientDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -16,7 +17,7 @@ export default function ClientDetailPage() {
   const { data: client, isLoading: loadingClient } = useGetClientByIdQuery(id);
   const { data: employees = [], isLoading: loadingEmp } =
     useGetClientEmployeesQuery(id);
-  const [clientForm, setClientForm] = useState<any>({});
+  const [clientForm, setClientForm] = useState<Partial<Client>>({});
   const [formInitialized, setFormInitialized] = useState(false);
 
   useEffect(() => {

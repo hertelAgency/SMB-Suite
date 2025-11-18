@@ -19,12 +19,11 @@ type Invoice = {
 };
 
 export default function InvoicesPage() {
-  const [data, setData] = useState<Invoice[]>([]);
   const { data: invoices = [], isLoading } = useGetInvoicesQuery();
 
   return (
     <Protected>
-      <main className="grid">
+      <main className="grid" role="main">
         <h1>Rechnungen</h1>
         <div className="card">
           <table className="table">
@@ -38,7 +37,12 @@ export default function InvoicesPage() {
               </tr>
             </thead>
             <tbody>
-              {data.map((inv) => (
+              {isLoading ? (
+                <tr><td colSpan={5}>Lade Rechnungen...</td></tr>
+              ) : invoices.length === 0 ? (
+                <tr><td colSpan={5}>Keine Rechnungen vorhanden</td></tr>
+              ) : (
+                invoices.map((inv) => (
                 <tr key={inv.id}>
                   <td>{inv.number}</td>
                   <td>{inv.status}</td>
@@ -46,7 +50,7 @@ export default function InvoicesPage() {
                   <td>{Number(inv.paidAmount ?? 0).toFixed(2)} €</td>
                   <td>
                     {inv.pdfUrl ? (
-                      <a className="btn" href={inv.pdfUrl} target="_blank">
+                      <a className="btn" href={inv.pdfUrl} target="_blank" rel="noopener noreferrer">
                         Öffnen
                       </a>
                     ) : (
@@ -54,7 +58,8 @@ export default function InvoicesPage() {
                     )}
                   </td>
                 </tr>
-              ))}
+              ))
+              )}
             </tbody>
           </table>
         </div>

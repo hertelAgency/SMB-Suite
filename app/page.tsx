@@ -6,9 +6,9 @@ import StatBox from "@/components/ui/StatBox";
 export default function Home() {
   return (
     <Protected>
-      <main className="grid">
+      <main className="grid" role="main">
         <h1>Business Cockpit</h1>
-        <div className="stat-grid">
+        <div className="stat-grid" role="region" aria-label="Statistiken Übersicht">
           <StatBox
             title="Einnahmen"
             value="€ 12.430"

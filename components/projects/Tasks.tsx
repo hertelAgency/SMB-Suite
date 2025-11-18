@@ -14,7 +14,6 @@ const Tasks = (id: string) => {
   const { data: tasks = [], isLoading: loadingTasks } =
     useGetProjectTasksQuery(projectId);
 
-    console.log(tasks)
   const [createTask, { isLoading: creatingTask }] =
     useCreateProjectTaskMutation();
   const [updateTask, { isLoading: updatingTask }] =

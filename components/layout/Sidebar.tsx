@@ -18,9 +18,9 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="sidebar">
+    <aside className="sidebar" role="complementary" aria-label="Hauptnavigation">
       <div className="sidebar__logo">SMB-Suite</div>
-      <nav className="sidebar__nav">
+      <nav className="sidebar__nav" role="navigation" aria-label="Hauptmenü">
         {navItems.map((item) => {
           const isActive = pathname.startsWith(item.href);
           return (

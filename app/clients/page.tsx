@@ -94,7 +94,6 @@ export default function ClientsPage() {
         isPrimary: true,
       });
     } catch (err: any) {
-      console.error(err);
       setError(err?.data?.message ?? "Kunde konnte nicht angelegt werden.");
     }
   };
